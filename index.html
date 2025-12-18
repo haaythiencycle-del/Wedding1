@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url('cover.jpg') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      animation: slideDown 1.5s ease;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      color: #f0e6d2;
+      animation: fadeIn 2s ease;
+    }
+
+    .tamu {
+      font-size: 1rem;
+      margin-bottom: 35px;
+      animation: fadeIn 2s ease-in-out;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    a.btn {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 36px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(6px);
+      transition: all 0.4s ease;
+      animation: fadeInUp 2s ease;
+    }
+
+    a.btn:hover {
+      background: rgba(255,255,255,0.4);
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes slideDown {
+      from {opacity: 0; transform: translateY(-40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="subtitle">WEDDING INVITATION</div>
+  <h1>Dimas& Risa</h1>
+  <div class="tamu" id="namaTamu">Kepada Yth.</div>
+  <a id="bukaUndangan" class="btn" href="#" target="_blank">Buka Undangan</a>
+
+  <audio id="musik" src="musik.mp3" loop></audio>
+
+  <script>
+    // Ambil parameter nama dari URL (?nama=...)
+    const params = new URLSearchParams(window.location.search);
+    const nama = params.get("nama");
+    const namaEl = document.getElementById("namaTamu");
+    if (nama) {
+      namaEl.textContent = `Kepada Yth. ${decodeURIComponent(nama)}`;
+    }
+
+    // Ganti dengan link undangan Canva kamu
+    const linkCanva = "undangan.html";
+    const bukaBtn = document.getElementById("bukaUndangan");
+    bukaBtn.href = linkCanva;
+
+    // Mainkan musik saat tombol diklik
+    const musik = document.getElementById("musik");
+    bukaBtn.addEventListener("click", () => {
+      musik.play().catch(err => console.log("Autoplay diblokir:", err));
+    });
+  </script>
+
+</body>
+</html>
